@@ -29,7 +29,6 @@ INSERT INTO Aluno (CPF, NUSP, Telefone1, Telefone2, Nome, Funcao, Ano_ingresso, 
 ('200.000.000-09', 00000009, '(11)20000-0017', '(11)20000-0018', 'ISABELA TELESI', 'ORGANIZAÇÃO', 2023, TO_DATE('2004-03-27', 'YYYY-MM-DD'), 'ARQUITETURA E URBANISMO', 'ISA.TELESI@USP.BR');
 INSERT INTO Aluno (CPF, NUSP, Telefone1, Telefone2, Nome, Funcao, Ano_ingresso, Data_nascimento, Curso, Email) VALUES
 ('200.000.000-10', 00000010, '(11)20000-0019', '(11)20000-0020', 'FELIPE GRABALOS', 'ORGANIZAÇÃO', 2022, TO_DATE('2004-05-04', 'YYYY-MM-DD'), 'ENGENHARIA ELÉTRICA', 'FEFO.GRABA@USP.BR');
--- Acho que em aluno seria bom fazer um check funcao Organizacao ou atleta
 
 -- Inserção na tabela Organizacao_interna
 INSERT INTO Organizacao_interna (CPF, Area) VALUES ('200.000.000-02', 'ADM');
@@ -59,7 +58,6 @@ INSERT INTO Atleta (CPF, Condicao, Modalidade) VALUES ('200.000.000-01', 'ATIVO'
 INSERT INTO Atleta (CPF, Condicao, Modalidade) VALUES ('200.000.000-04', 'LESIONADO', 'CHEERLEADING');
 INSERT INTO Atleta (CPF, Condicao, Modalidade) VALUES ('200.000.000-06', 'ATIVO', 'BASQUETE');
 INSERT INTO Atleta (CPF, Condicao, Modalidade) VALUES ('200.000.000-08', 'LESIONADO', 'KARATE');
--- Talvez check ativo, lesionado
 
 -- Inserção na tabela Consulta
 INSERT INTO Consulta (Paciente, Medico, Data_Horario, Rua, Numero, CEP, Cidade) VALUES
