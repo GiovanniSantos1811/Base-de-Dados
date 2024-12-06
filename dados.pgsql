@@ -155,3 +155,7 @@ INSERT INTO Compoe (Compra, Material_esportivo, Quantidade) VALUES ('20000000000
 -- Inserção tabela DirMod
 INSERT INTO DirMod (Modalidade, Diretor_modalidade) VALUES ('FUTSAL', '200.000.000-07');
 INSERT INTO DirMod (Modalidade, Diretor_modalidade) VALUES ('BASQUETE', '200.000.000-05');
+
+-- Inserção tabela Usa
+INSERT INTO Usa (Material_esportivo, Modalidade) VALUES ('BOLA DE FUTSAL', 'FUTSAL');
+INSERT INTO Usa (Material_esportivo, Modalidade) VALUES ('BOLA DE BASQUETE', 'BASQUETE');
