@@ -59,11 +59,13 @@ SELECT A.Nome AS Nome_Aluno,
                                 AND M.Armazem_numero_sala = M_Armazenamento.Numero_sala
     WHERE M.Nome = 'BOLA DE FUTSAL';
 
--- Busca a quantidade de atletas em cada modalidade
-SELECT M.Nome AS Modalidade, COUNT(A.CPF) AS Quantidade_Atletas
-    FROM Modalidade M
-    LEFT JOIN Atleta A ON M.Nome = A.Modalidade
-    GROUP BY M.Nome;
+-- Busca a quantidade de atletas em cada modalidade e quais os materiais esportivos utilizados por cada modalidade
+SELECT M.Nome AS Modalidade, COUNT(DISTINCT A.CPF) AS Quantidade_Atletas, LISTAGG(ME.Nome, ', ') WITHIN GROUP (ORDER BY ME.Nome) AS Materiais_Esportivos
+    FROM Modalidade M LEFT JOIN Atleta A ON M.Nome = A.Modalidade
+    LEFT JOIN Usa U ON M.Nome = U.Modalidade
+    LEFT JOIN Material_esportivo ME ON U.Material_esportivo = ME.Nome
+    GROUP BY M.Nome
+    ORDER BY M.Nome;
 
 
 
