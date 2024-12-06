@@ -1,4 +1,4 @@
--- Buscar atributos de atletas que irão participar de um treinamento em certo dia e com certo treinador a partir da data e do cpf do treinador
+-- Buscar atributos de atletas que irão participar de um treinamento em certo dia e com certo treinador a partir da data do treinamento e do cpf do treinador
 SELECT al.Nome, a.CPF, a.Condicao, a.Modalidade, al.Telefone1, al.Telefone2, al.Email
     FROM Atleta a JOIN Aluno al ON a.CPF = al.CPF
     JOIN Participa p ON a.CPF = p.Atleta
@@ -11,7 +11,7 @@ SELECT al.Nome, a.CPF, a.Condicao, a.Modalidade, al.Telefone1, al.Telefone2, al.
                 AND p.Nome = t.Nome
                 AND p.Nome_instalacao = t.Nome_instalacao
                 AND p.Numero_instalacao = t.Numero_instalacao
-    WHERE TRUNC(t.Data_Horario) = TO_DATE('10-12-2024', 'DD-MM-YYYY')
+    WHERE DATE_TRUNC('day', t.Data_Horario) = TO_DATE('10-12-2024', 'DD-MM-YYYY')
         AND t.Treinador = '300.000.000-01';
 
 -- Buscar atributos de atletas que participarão de uma consulta em certo dia a partir da data       
