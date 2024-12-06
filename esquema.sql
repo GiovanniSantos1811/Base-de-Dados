@@ -1,32 +1,5 @@
 -- Tabelas estão na ordem para o comando Executar script (F5) funcionar corretamente
 
--- drop table MEDICO cascade constraints;
--- drop table CONVENIOS cascade constraints;
--- drop table ORGANIZACAO_INTERNA cascade constraints;
--- drop table ALUNO cascade constraints;
--- drop table ATLETA cascade constraints;
--- drop table MODALIDADE cascade constraints;
--- drop table CONSULTA cascade constraints;
--- drop table PATROCINADOR cascade constraints;
--- drop table ADMINISTRACAO cascade constraints;
--- drop table ARMAZEM cascade constraints;
--- drop table BUSCA cascade constraints;
--- drop table COMPOE cascade constraints;
--- drop table COMPRA cascade constraints;
--- drop table DIRETOR cascade constraints;
--- drop table DIRETOR_DE_MODALIDADE cascade constraints;
--- drop table DIRMOD cascade constraints;
--- drop table LOCAL cascade constraints;
--- drop table LOJA cascade constraints;
--- drop table MATERIAL_ESPORTIVO cascade constraints;
--- drop table MEMBRO cascade constraints;
--- drop table ORIENTA cascade constraints;
--- drop table PARTICIPA cascade constraints;
--- drop table TREINADOR cascade constraints;
--- drop table TREINAMENTO cascade constraints;
--- drop table USA cascade constraints;
--- drop table UTILIZA cascade constraints;
-
 -- Medico
 CREATE TABLE Medico(
     CPF CHAR(14) NOT NULL,
