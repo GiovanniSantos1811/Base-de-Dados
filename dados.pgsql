@@ -131,6 +131,7 @@ INSERT INTO Armazem(Campus, Numero_sala) VALUES ('C1', 'C102');
 -- Inserção na tabela Material Esportivo
 INSERT INTO Material_esportivo(Nome, Estado, Armazem_campus, Armazem_numero_sala, Quantidade) VALUES ('BOLA DE FUTSAL', 'BOM', 'C1', 'C101', 15);
 INSERT INTO Material_esportivo(Nome, Estado, Armazem_campus, Armazem_numero_sala, Quantidade) VALUES ('BOLA DE BASQUETE', 'RUIM', 'C1', 'C102', 20);
+INSERT INTO Material_esportivo(Nome, Estado, Armazem_campus, Armazem_numero_sala, Quantidade) VALUES ('COLETE', 'BOM', 'C1', 'C101', 40);
 
 -- Inserção na tabela Utiliza
 INSERT INTO Utiliza(Data_Horario, Treinador, Cidade, Rua, Numero, CEP, Nome, Nome_instalacao, Numero_instalacao, Material_esportivo, Quantidade) VALUES 
@@ -159,3 +160,4 @@ INSERT INTO DirMod (Modalidade, Diretor_modalidade) VALUES ('BASQUETE', '200.000
 -- Inserção tabela Usa
 INSERT INTO Usa (Material_esportivo, Modalidade) VALUES ('BOLA DE FUTSAL', 'FUTSAL');
 INSERT INTO Usa (Material_esportivo, Modalidade) VALUES ('BOLA DE BASQUETE', 'BASQUETE');
+INSERT INTO Usa(Material_esportivo, Modalidade) VALUES ('COLETE', 'FUTSAL');
