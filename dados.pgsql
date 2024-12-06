@@ -4,7 +4,6 @@ INSERT INTO Medico (CPF, CRM, Telefone1, Telefone2, Nome, Especialidade, Email) 
 INSERT INTO Medico (CPF, CRM, Telefone1, Telefone2, Nome, Especialidade, Email) VALUES
 ('100.000.000-02', 'CRM222222', '(11)10000-0003', '(11)10000-0004', 'MARIA OLIVEIRA', 'ORTOPEDISTA', 'MARIA.OLIVEIRA@ORTO.COM');
 
-
 -- Inserção na tabela Convenios
 INSERT INTO Convenios (Nome, Medico) VALUES ('UNIMED', '100.000.000-01');
 INSERT INTO Convenios (Nome, Medico) VALUES ('PORTO SEGURO', '100.000.000-02');
@@ -39,7 +38,6 @@ INSERT INTO Organizacao_interna (CPF, Area) VALUES ('200.000.000-05', 'DM');
 INSERT INTO Organizacao_interna (CPF, Area) VALUES ('200.000.000-07', 'DM');
 INSERT INTO Organizacao_interna (CPF, Area) VALUES ('200.000.000-09', 'ADM');
 INSERT INTO Organizacao_interna (CPF, Area) VALUES ('200.000.000-10', 'ADM');
--- Acho que em aluno seria bom fazer um check Area ADMINISTRAÇÃO OU DM(DIRETOR MODALIDADE)
 
 -- Inserção na tabela Modalidade
 INSERT INTO Modalidade (Nome) VALUES ('FUTEBOL DE CAMPO');
@@ -80,7 +78,6 @@ INSERT INTO Administracao (CPF, Cargo) VALUES ('200.000.000-02', 'MEMBRO');
 INSERT INTO Administracao (CPF, Cargo) VALUES ('200.000.000-03', 'MEMBRO');
 INSERT INTO Administracao (CPF, Cargo) VALUES ('200.000.000-09', 'DIRETOR');
 INSERT INTO Administracao (CPF, Cargo) VALUES ('200.000.000-10', 'MEMBRO');
--- Fazer check CARGO MEMBRO DIRETOR
 
 -- Inserção na tabela Diretor modalidade
 INSERT INTO Diretor_de_modalidade (CPF) VALUES ('200.000.000-05');
@@ -116,7 +113,7 @@ INSERT INTO Busca(Administracao, Patrocinador) VALUES ('200.000.000-03', '10.000
 
 -- Inserção na tabela Diretor
 INSERT INTO Diretor(CPF) VALUES ('200.000.000-09');
--- Diretor único devido a modelagem do problema
+-- Diretor único devido a modelagem do problema, tratado na implementação
 
 -- Inserção na tabela Membro
 INSERT INTO Membro(CPF, Diretor) VALUES ('200.000.000-02', '200.000.000-09');
@@ -130,12 +127,10 @@ INSERT INTO Orienta(Treinador, Modalidade) VALUES ('300.000.000-02', 'FUTSAL');
 -- Inserção na tabela Armazem
 INSERT INTO Armazem(Campus, Numero_sala) VALUES ('C1', 'C101');
 INSERT INTO Armazem(Campus, Numero_sala) VALUES ('C1', 'C102');
--- talvez um check aqui fique bom tb
 
 -- Inserção na tabela Material Esportivo
 INSERT INTO Material_esportivo(Nome, Estado, Armazem_campus, Armazem_numero_sala, Quantidade) VALUES ('BOLA DE FUTSAL', 'BOM', 'C1', 'C101', 15);
 INSERT INTO Material_esportivo(Nome, Estado, Armazem_campus, Armazem_numero_sala, Quantidade) VALUES ('BOLA DE BASQUETE', 'RUIM', 'C1', 'C102', 20);
--- talvez um check aqui fique bom tb
 
 -- Inserção na tabela Utiliza
 INSERT INTO Utiliza(Data_Horario, Treinador, Cidade, Rua, Numero, CEP, Nome, Nome_instalacao, Numero_instalacao, Material_esportivo, Quantidade) VALUES 
@@ -160,7 +155,3 @@ INSERT INTO Compoe (Compra, Material_esportivo, Quantidade) VALUES ('20000000000
 -- Inserção tabela DirMod
 INSERT INTO DirMod (Modalidade, Diretor_modalidade) VALUES ('FUTSAL', '200.000.000-07');
 INSERT INTO DirMod (Modalidade, Diretor_modalidade) VALUES ('BASQUETE', '200.000.000-05');
-
--- Inserção tabela Usa
-INSERT INTO Usa (Material_esportivo, Modalidade) VALUES ('BOLA DE FUTSAL', 'FUTSAL');
-INSERT INTO Usa (Material_esportivo, Modalidade) VALUES ('BOLA DE BASQUETE', 'BASQUETE');
