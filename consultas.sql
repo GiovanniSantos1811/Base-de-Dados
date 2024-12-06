@@ -1,5 +1,5 @@
--- Buscar atributos de atletas que irão participar de um treinamento em certo dia e com certo treinador a partir da data do treinamento e do cpf do treinador
-SELECT al.Nome, a.CPF, a.Condicao, a.Modalidade, al.Telefone1, al.Telefone2, al.Email
+-- Buscar atributos de atletas que irão participar de um treinamento em certo dia e com certo treinador a partir da data e do cpf do treinador
+SELECT a.CPF, a.Condicao, a.Modalidade, al.Telefone1, al.Telefone2, al.Email
     FROM Atleta a JOIN Aluno al ON a.CPF = al.CPF
     JOIN Participa p ON a.CPF = p.Atleta
     JOIN Treinamento t ON p.Data_Horario = t.Data_Horario 
@@ -11,7 +11,7 @@ SELECT al.Nome, a.CPF, a.Condicao, a.Modalidade, al.Telefone1, al.Telefone2, al.
                 AND p.Nome = t.Nome
                 AND p.Nome_instalacao = t.Nome_instalacao
                 AND p.Numero_instalacao = t.Numero_instalacao
-    WHERE DATE_TRUNC('day', t.Data_Horario) = TO_DATE('10-12-2024', 'DD-MM-YYYY')
+    WHERE TRUNC(t.Data_Horario) = TO_DATE('10-12-2024', 'DD-MM-YYYY')
         AND t.Treinador = '300.000.000-01';
 
 -- Buscar atributos de atletas que participarão de uma consulta em certo dia a partir da data       
@@ -67,11 +67,7 @@ SELECT M.Nome AS Modalidade, COUNT(DISTINCT A.CPF) AS Quantidade_Atletas, LISTAG
     GROUP BY M.Nome
     ORDER BY M.Nome;
 
--- Busca os treinadores que realizam os mesmos treinos de modalidade de um treinador específico
-select distinct T.NOME AS Nome_Treinador
-from TREINADOR T join ORIENTA O 
-on T.CPF = O.Treinador
-where not exists(select O.Modalidade from ORIENTA O1
-            where O1.Treinador = '300.000.000-01'
-            and O1.Modalidade not in (select O2.Modalidade from Orienta O2
-            where(O2.Treinador = T.CPF and O2.Treinador <> '300.000.000-01')));
+
+
+
+
