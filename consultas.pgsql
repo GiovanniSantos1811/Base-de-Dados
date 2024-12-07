@@ -11,14 +11,14 @@ SELECT a.CPF, a.Condicao, a.Modalidade, al.Telefone1, al.Telefone2, al.Email
                 AND p.Nome = t.Nome
                 AND p.Nome_instalacao = t.Nome_instalacao
                 AND p.Numero_instalacao = t.Numero_instalacao
-    WHERE TRUNC(t.Data_Horario) = TO_DATE('10-12-2024', 'DD-MM-YYYY')
+    WHERE DATE_TRUNC('day', t.Data_Horario) = TO_DATE('10-12-2024', 'DD-MM-YYYY')
         AND t.Treinador = '300.000.000-01';
 
 -- Buscar atributos de atletas que participarão de uma consulta em certo dia a partir da data       
 SELECT a.CPF AS AtletaCPF, al.Nome AS AtletaNome, al.Telefone1, al.Telefone2, al.Email, c.Data_Horario, c.Rua, c.Numero, c.Cidade, c.CEP
     FROM Consulta c JOIN Atleta a ON c.Paciente = a.CPF
     JOIN Aluno al ON a.CPF = al.CPF
-    WHERE TRUNC(c.Data_Horario) = TO_DATE('10-12-2024', 'DD-MM-YYYY');
+    WHERE DATE_TRUNC('day', c.Data_Horario) = TO_DATE('10-12-2024', 'DD-MM-YYYY');
     
 -- Buscar a quantidade de vezes que certa modalidade utilizou certo material esportivo no ano de 2024
 SELECT u.Modalidade, u.Material_esportivo, COUNT(*) AS Quantidade_uso
@@ -60,7 +60,7 @@ SELECT A.Nome AS Nome_Aluno,
     WHERE M.Nome = 'BOLA DE FUTSAL';
 
 -- Busca a quantidade de atletas em cada modalidade e quais os materiais esportivos utilizados por cada modalidade
-SELECT M.Nome AS Modalidade, COUNT(DISTINCT A.CPF) AS Quantidade_Atletas, LISTAGG(ME.Nome, ', ') WITHIN GROUP (ORDER BY ME.Nome) AS Materiais_Esportivos
+SELECT M.Nome AS Modalidade, COUNT(DISTINCT A.CPF) AS Quantidade_Atletas, STRING_AGG(ME.Nome, ', ' ORDER BY ME.Nome) AS Materiais_Esportivos
     FROM Modalidade M LEFT JOIN Atleta A ON M.Nome = A.Modalidade
     LEFT JOIN Usa U ON M.Nome = U.Modalidade
     LEFT JOIN Material_esportivo ME ON U.Material_esportivo = ME.Nome
