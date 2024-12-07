@@ -3,6 +3,10 @@ import sqlalchemy
 from sqlalchemy import create_engine
 from sqlalchemy.sql import text
 
+#Variáveis globais
+flag_insert = False #Indica se a operação de inserção foi um sucesso
+flag_busca = False #Indica se a operação de busca foi um sucesso
+
 #------------- Funções relacionadas à BD --------------
 def connect(username, password, host, port, database): #Função para criar conexão com a base de dados através do sqlalchemy
     try:
@@ -26,8 +30,11 @@ def insert(dados, engine):
             with connection.begin():
                 connection.execute(text(query), dados)
                 print("Dados inseridos com sucesso!")
+                flag_insert = True
     except Exception as e:
-        print("Erro ao executar a inserção:", e)
+        #print("Erro ao executar a inserção:", e)
+        print("Houve o preenchimento incorreto dos dados! Preencha novamente")
+        flag_insert = False
 
 def busca(dados, engine):
     #Definindo a query que realizará a busca
@@ -50,10 +57,12 @@ def busca(dados, engine):
 
     try:
         df = pd.read_sql(query, engine, params=dados) #Realizando a busca e armazenando o resultado no datagrama df
-
+        flag_busca = True
         print(df.head()) #Printando o resultado da busca
     except Exception as e:
-        print("Erro na busca: ", e)
+        #print("Erro na busca: ", e)
+        print("Houve o preenchimento incorreto dos dados! Preencha novamente")
+        flag_busca = False
 
 #------------- Funções relacionadas à aplicação, interação com usuário -------------
 def clear():
@@ -67,8 +76,8 @@ def aba_inicial():
     print("Oferecemos dois serviços: um de inserção de dados no banco e outro de busca!")
 
     while (True):
-        opcao = int(input("Digite 1 para o de inserção e 2 para o de busca: "))
-        if (opcao != 1 and opcao != 2):
+        opcao = int(input("Digite 1 para o de inserção, 2 para o de busca ou 3 para encerrar a aplicação: "))
+        if (opcao != 1 and opcao != 2 and opcao != 3):
             print("Opção escolhida não existe!")
         else:
             break
@@ -114,7 +123,7 @@ def aba_busca():
     print("--------------------------------------------------")
 
     cpf = input("Informe o CPF do treinador (XXX.XXX.XXX-XX): ")
-    data = input("Informe a data na qual foi feito o treinamento: ")
+    data = input("Informe a data na qual foi feito o treinamento (DD-MM-AAAA): ")
 
     dados = {
         'cpf': cpf,
@@ -127,16 +136,25 @@ def aba_busca():
 def main(): 
     engine = connect("postgres", "senha", "localhost", "5432", "postgres") #Criando a conexão com a base de dados
 
-    #Aba inicial
-    opcao = aba_inicial() #Rodando a aba inicial e pegando a opção escolhida pelo usuário
+    while (True):
+        #Aba inicial
+        opcao = aba_inicial() #Rodando a aba inicial e pegando a opção escolhida pelo usuário
+        if (opcao == 3): #Encerrando a aplicação
+            break
 
-    if (opcao == 1): #Aba de inserção
-        dados_insert = aba_insercao() #Mostrando a aba de inserção e pegando os dados que serão inseridos
-        insert(dados_insert, engine)
+        if (opcao == 1): #Aba de inserção
+            while (flag_insert == False):
+                dados_insert = aba_insercao() #Mostrando a aba de inserção e pegando os dados que serão inseridos
+                insert(dados_insert, engine)
+                print("\n\n")
 
-    elif (opcao == 2): #Aba de busca
-        dados_busca = aba_busca()
-        busca(dados_busca, engine)
+        elif (opcao == 2): #Aba de busca
+            while (flag_busca == False):
+                dados_busca = aba_busca()
+                busca(dados_busca, engine)
+                print("\n\n")
+        
+        print("\n\n")
 
 
 
