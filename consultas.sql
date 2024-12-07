@@ -67,6 +67,19 @@ SELECT M.Nome AS Modalidade, COUNT(DISTINCT A.CPF) AS Quantidade_Atletas, LISTAG
     GROUP BY M.Nome
     ORDER BY M.Nome;
 
+-- Busca os treinadores que treinam todas as modalidades de um treinador especifico
+SELECT T.Nome AS Nome_Treinador
+FROM Treinador T
+JOIN Orienta O 
+ON T.CPF = O.Treinador
+WHERE O.Modalidade IN (SELECT O1.Modalidade
+    FROM Orienta O1
+    WHERE O1.Treinador = '300.000.000-01') AND T.CPF <> '300.000.000-01'
+GROUP BY T.Nome
+HAVING COUNT(DISTINCT O.Modalidade) = (SELECT COUNT(DISTINCT O1.Modalidade)
+    FROM Orienta O1
+    WHERE O1.Treinador = '300.000.000-01');
+
 
 
 

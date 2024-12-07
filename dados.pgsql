@@ -159,3 +159,5 @@ INSERT INTO DirMod (Modalidade, Diretor_modalidade) VALUES ('BASQUETE', '200.000
 INSERT INTO Usa (Material_esportivo, Modalidade) VALUES ('BOLA DE FUTSAL', 'FUTSAL');
 INSERT INTO Usa (Material_esportivo, Modalidade) VALUES ('BOLA DE BASQUETE', 'BASQUETE');
 INSERT INTO Usa(Material_esportivo, Modalidade) VALUES ('COLETE', 'FUTSAL');
+
+
